@@ -9,7 +9,7 @@
   }: let
     user = config.preferences.user.name; # "nyght"
   in {
-    environment.systemPackages = [pkgs.rofi-wayland];
+    environment.systemPackages = [pkgs.rofi];
 
     # Deploy the themed rasi file via hjem (our dotfile manager)
     hjem.users.${user}.files = {

@@ -42,7 +42,7 @@
   in {
     programs.bash = {
       enable = true;
-      enableCompletion = true;
+      completion.enable = true;
       interactiveShellInit = ''
         # Completion (your exact settings)
         bind "set show-all-if-ambiguous on"

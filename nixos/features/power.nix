@@ -7,8 +7,7 @@
         charger = { governor = "performance"; turbo = "auto"; energy_performance_preference = "performance"; };
       };
     };
-    services.asusd = { enable = true; enableUserService = true; };
-    services.thermald.enable = true;
+    services.asusd.enable = true;
     powerManagement.powertop.enable = true;
     environment.systemPackages = with pkgs; [asusctl powertop];
   };
