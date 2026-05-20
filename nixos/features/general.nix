@@ -9,8 +9,7 @@
     nixpkgs.config.allowUnfree = true;
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
-      glibc zlib openssl ncurses libgcc glib expat bzip2 xz fuse systemd
-      pkgs."libstdc++"
+      glibc zlib openssl ncurses libgcc glib expat bzip2 xz fuse systemd stdenv.cc.cc.lib
     ];
     programs.direnv = { enable = true; silent = true; nix-direnv.enable = true; };
     programs.nh = { enable = true; flake = "/home/nyght/nixconfig"; };
