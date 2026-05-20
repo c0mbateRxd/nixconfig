@@ -20,9 +20,9 @@
       package = pkgs.kdePackages.sddm;
       extraPackages = with pkgs; [
         swordTheme
-        kdePackages.qt6-svg
-        kdePackages.qt6-multimedia
-        kdePackages.qt6-5compat
+        kdePackages.qtsvg
+        kdePackages.qtmultimedia
+        kdePackages.qt5compat
       ];
     };
     environment.systemPackages = [swordTheme];
