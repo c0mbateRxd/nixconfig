@@ -3,7 +3,7 @@
     environment.systemPackages = with pkgs; [
       zathura yazi unar poppler ffmpegthumbnailer
       imv mpv
-      xfce.thunar xfce.thunar-archive-plugin xfce.thunar-volman
+      thunar thunar-archive-plugin thunar-volman
       libreoffice-fresh
       unzip zip p7zip unrar
     ];
