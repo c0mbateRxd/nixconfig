@@ -9,7 +9,7 @@
       src = inputs.qylock;
       installPhase = ''
         mkdir -p $out/share/sddm/themes/Sword
-        cp -r themes/Sword/* $out/share/sddm/themes/Sword/
+	cp -aR themes/sword/. $out/share/sddm/themes/Sword/
       '';
     };
   in {

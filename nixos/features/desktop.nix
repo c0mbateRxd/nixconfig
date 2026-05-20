@@ -5,7 +5,7 @@
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       inter google-fonts
-      noto-fonts noto-fonts-emoji liberation_ttf
+      noto-fonts-color-emoji
     ];
     fonts.fontconfig.defaultFonts = {
       serif = ["Cinzel"]; sansSerif = ["Inter"];
