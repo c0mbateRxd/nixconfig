@@ -1,195 +1,185 @@
 # Niri compositor — Ashen Keep
-# All keybinds from your original niri.nix are preserved.
-{self, inputs, ...}: {
+# Config deployed as raw KDL via hjem to ~/.config/niri/config.kdl
+# programs.niri.enable just installs the binary + wayland session
+{self, ...}: {
   flake.nixosModules.niri = {pkgs, lib, config, ...}: let
-    # Named workspaces for Roman numeral display in Quickshell
-    workspaceNames = ["I" "II" "III" "IV" "V"];
+    user      = config.preferences.user.name;
+    wallpaper = self.wallpaper;
+    sh        = lib.getExe pkgs.bash;
+    wpctl     = "${pkgs.wireplumber}/bin/wpctl";
+    bctl      = lib.getExe pkgs.brightnessctl;
+    pctl      = lib.getExe pkgs.playerctl;
+    grim      = lib.getExe pkgs.grim;
+    slurp     = lib.getExe pkgs.slurp;
+    wlcopy    = "${pkgs.wl-clipboard}/bin/wl-copy";
+
+    niriConfig = pkgs.writeText "config.kdl" ''
+      prefer-no-csd
+
+      input {
+          keyboard {
+              xkb {
+                  layout "us"
+              }
+              repeat-delay 300
+              repeat-rate 35
+              numlock
+          }
+          touchpad {
+              tap
+              natural-scroll
+              dwt
+          }
+          focus-follows-mouse {
+              max-scroll-amount "0%"
+          }
+      }
+
+      layout {
+          gaps 8
+          center-focused-column "never"
+          preset-column-widths {
+              proportion 0.33333
+              proportion 0.5
+              proportion 0.66667
+          }
+          default-column-width {
+              proportion 0.5
+          }
+          focus-ring {
+              width 2
+              active-color "#c49a30ff"
+              inactive-color "#2c3040aa"
+          }
+          border {
+              off
+          }
+      }
+
+      spawn-at-startup "quickshell"
+      spawn-at-startup "swaybg" "-i" "${wallpaper}" "-m" "fill"
+      spawn-at-startup "xwayland-satellite"
+      spawn-at-startup "dunst"
+
+      workspace "I"
+      workspace "II"
+      workspace "III"
+      workspace "IV"
+      workspace "V"
+
+      window-rule {
+          match app-id="kitty"
+          draw-border-with-background false
+      }
+      window-rule {
+          match title="nmtui"
+          open-floating true
+      }
+      window-rule {
+          match app-id="blueman-manager"
+          open-floating true
+      }
+      window-rule {
+          match app-id="pavucontrol"
+          open-floating true
+      }
+
+      binds {
+          Mod+Return { spawn "kitty"; }
+          Mod+D      { spawn "rofi" "-show" "drun" "-show-icons"; }
+          Mod+O      { toggle-overview; }
+          Mod+Q      { close-window; }
+          Mod+Shift+E { quit; }
+          Ctrl+Alt+Delete { quit; }
+          Mod+Shift+P { power-off-monitors; }
+          Alt+F4 { spawn "wlogout" "-b" "2"; }
+
+          Print         { screenshot; }
+          Ctrl+Print    { screenshot-screen; }
+          Alt+Print     { screenshot-window; }
+          Mod+Shift+S   { spawn "${sh}" "-c" "${grim} -g \"$(${slurp} -w 0)\" - | ${wlcopy}"; }
+          Mod+Ctrl+S    { spawn "${sh}" "-c" "${grim} -l 0 - | ${wlcopy}"; }
+
+          Mod+Left  { focus-column-left; }
+          Mod+Down  { focus-window-down; }
+          Mod+Up    { focus-window-up; }
+          Mod+Right { focus-column-right; }
+          Mod+H     { focus-column-left; }
+          Mod+J     { focus-window-down; }
+          Mod+K     { focus-window-up; }
+          Mod+L     { focus-column-right; }
+
+          Mod+Ctrl+Left  { move-column-left; }
+          Mod+Ctrl+Down  { move-window-down; }
+          Mod+Ctrl+Up    { move-window-up; }
+          Mod+Ctrl+Right { move-column-right; }
+          Mod+Ctrl+H     { move-column-left; }
+          Mod+Ctrl+J     { move-window-down; }
+          Mod+Ctrl+K     { move-window-up; }
+          Mod+Ctrl+L     { move-column-right; }
+
+          Mod+Shift+Page_Down { move-workspace-down; }
+          Mod+Shift+Page_Up   { move-workspace-up; }
+          Mod+Shift+U         { move-workspace-down; }
+          Mod+Shift+I         { move-workspace-up; }
+
+          Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+          Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+          Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+          Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+          Mod+WheelScrollRight     { focus-column-right; }
+          Mod+WheelScrollLeft      { focus-column-left; }
+          Mod+Ctrl+WheelScrollRight { move-column-right; }
+          Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+          Mod+1 { focus-workspace "I"; }
+          Mod+2 { focus-workspace "II"; }
+          Mod+3 { focus-workspace "III"; }
+          Mod+4 { focus-workspace "IV"; }
+          Mod+5 { focus-workspace "V"; }
+          Mod+Shift+1 { move-column-to-workspace "I"; }
+          Mod+Shift+2 { move-column-to-workspace "II"; }
+          Mod+Shift+3 { move-column-to-workspace "III"; }
+          Mod+Shift+4 { move-column-to-workspace "IV"; }
+          Mod+Shift+5 { move-column-to-workspace "V"; }
+
+          Mod+BracketLeft  { consume-or-expel-window-left; }
+          Mod+BracketRight { consume-or-expel-window-right; }
+          Mod+Period       { expel-window-from-column; }
+
+          Mod+R       { switch-preset-column-width; }
+          Mod+Shift+R { switch-preset-window-height; }
+          Mod+Ctrl+R  { reset-window-height; }
+          Mod+F       { maximize-column; }
+          Mod+Shift+F { fullscreen-window; }
+          Mod+Ctrl+F  { expand-column-to-available-width; }
+          Mod+C       { center-column; }
+          Mod+Ctrl+C  { center-visible-columns; }
+          Mod+Minus        { set-column-width "-10%"; }
+          Mod+Equal        { set-column-width "+10%"; }
+          Mod+Shift+Minus  { set-window-height "-10%"; }
+          Mod+Shift+Equal  { set-window-height "+10%"; }
+
+          Mod+V       { toggle-window-floating; }
+          Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+          Mod+W       { toggle-column-tabbed-display; }
+
+          XF86AudioRaiseVolume allow-when-locked=true { spawn "${sh}" "-c" "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+          XF86AudioLowerVolume allow-when-locked=true { spawn "${sh}" "-c" "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+          XF86AudioMute        allow-when-locked=true { spawn "${sh}" "-c" "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+          XF86AudioMicMute     allow-when-locked=true { spawn "${sh}" "-c" "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+          XF86AudioPlay allow-when-locked=true { spawn "${sh}" "-c" "${pctl} play-pause"; }
+          XF86AudioStop allow-when-locked=true { spawn "${sh}" "-c" "${pctl} stop"; }
+          XF86AudioPrev allow-when-locked=true { spawn "${sh}" "-c" "${pctl} previous"; }
+          XF86AudioNext allow-when-locked=true { spawn "${sh}" "-c" "${pctl} next"; }
+
+          XF86MonBrightnessUp   allow-when-locked=true { spawn "${bctl}" "--class=backlight" "set" "+5%"; }
+          XF86MonBrightnessDown allow-when-locked=true { spawn "${bctl}" "--class=backlight" "set" "5%-"; }
+      }
+    '';
   in {
-    programs.niri = {
-      enable = true;
-      settings = {
-        prefer-no-csd = true;
-
-        input = {
-          keyboard = {
-            xkb.layout = "us";
-            repeat-delay = 300;
-            repeat-rate  = 35;
-            numlock      = true;
-          };
-          touchpad = {
-            tap            = true;
-            natural-scroll = true;
-            dwt            = true;
-          };
-          focus-follows-mouse.max-scroll-amount = "0%";
-        };
-
-        # Spawn at startup
-        spawn-at-startup = [
-          { command = ["quickshell"]; }
-          { command = ["swaybg" "-i" "${self.wallpaper}" "-m" "fill"]; }
-          { command = ["xwayland-satellite"]; }
-          { command = ["dunst"]; }
-        ];
-
-        # Layout — 8px gaps, Bonfire Gold focus ring
-        layout = {
-          gaps = 8;
-          center-focused-column = "never";
-          preset-column-widths = [
-            {proportion = 0.33333;}
-            {proportion = 0.5;}
-            {proportion = 0.66667;}
-          ];
-          default-column-width.proportion = 0.5;
-          focus-ring = {
-            enable = true;
-            width = 2;
-            active-color   = "#c49a30ff"; # Bonfire Gold
-            inactive-color = "#2c3040aa"; # Grave Iron
-          };
-          border.enable = false;
-        };
-
-        # Named workspaces — maps to Roman numerals in Quickshell
-        workspaces = {
-          "I"   = {};
-          "II"  = {};
-          "III" = {};
-          "IV"  = {};
-          "V"   = {};
-        };
-
-        # Window rules
-        window-rules = [
-          { matches = [{app-id = "kitty";}]; draw-border-with-background = false; }
-          # Floating windows
-          { matches = [{title = "nmtui";}]; open-floating = true; }
-          { matches = [{app-id = "blueman-manager";}]; open-floating = true; }
-          { matches = [{app-id = "pavucontrol";}]; open-floating = true; }
-        ];
-
-        # ── Binds ─────────────────────────────────────────────────
-        binds = with config.lib.niri.actions; let
-          sh = lib.getExe pkgs.bash;
-          wpctl = "${pkgs.wireplumber}/bin/wpctl";
-          brightnessctl = lib.getExe pkgs.brightnessctl;
-          playerctl = lib.getExe pkgs.playerctl;
-          grim = lib.getExe pkgs.grim;
-          slurp = lib.getExe pkgs.slurp;
-          wlcopy = "${pkgs.wl-clipboard}/bin/wl-copy";
-        in {
-          # Essentials
-          "Mod+Return".action = spawn "kitty";
-          "Mod+D".action      = spawn "rofi" "-show" "drun" "-show-icons";
-          "Mod+O".action      = toggle-overview;
-          "Mod+Q".action      = close-window;
-          "Mod+Shift+E".action = quit;
-          "Ctrl+Alt+Delete".action = quit;
-          "Mod+Shift+P".action = power-off-monitors;
-          "Alt+F4".action = spawn "wlogout" "-b" "2";
-
-          # Screenshots — your exact binds
-          "Print".action       = screenshot;
-          "Ctrl+Print".action  = screenshot-screen;
-          "Alt+Print".action   = screenshot-window;
-          # To clipboard
-          "Mod+Shift+S".action = spawn sh "-c" ''${grim} -g "$(${slurp} -w 0)" - | ${wlcopy}'';
-          "Mod+Ctrl+S".action  = spawn sh "-c" ''${grim} -l 0 - | ${wlcopy}'';
-
-          # Focus
-          "Mod+Left".action  = focus-column-left;
-          "Mod+Down".action  = focus-window-down;
-          "Mod+Up".action    = focus-window-up;
-          "Mod+Right".action = focus-column-right;
-          "Mod+H".action     = focus-column-left;
-          "Mod+J".action     = focus-window-down;
-          "Mod+K".action     = focus-window-up;
-          "Mod+L".action     = focus-column-right;
-
-          # Move windows
-          "Mod+Ctrl+Left".action  = move-column-left;
-          "Mod+Ctrl+Down".action  = move-window-down;
-          "Mod+Ctrl+Up".action    = move-window-up;
-          "Mod+Ctrl+Right".action = move-column-right;
-          "Mod+Ctrl+H".action     = move-column-left;
-          "Mod+Ctrl+J".action     = move-window-down;
-          "Mod+Ctrl+K".action     = move-window-up;
-          "Mod+Ctrl+L".action     = move-column-right;
-
-          # Workspace movement
-          "Mod+Shift+Page_Down".action = move-workspace-down;
-          "Mod+Shift+Page_Up".action   = move-workspace-up;
-          "Mod+Shift+U".action         = move-workspace-down;
-          "Mod+Shift+I".action         = move-workspace-up;
-
-          # Scroll
-          "Mod+WheelScrollDown".action      = { focus-workspace-down = {}; cooldown-ms = 150; };
-          "Mod+WheelScrollUp".action        = { focus-workspace-up   = {}; cooldown-ms = 150; };
-          "Mod+Ctrl+WheelScrollDown".action = { move-column-to-workspace-down = {}; cooldown-ms = 150; };
-          "Mod+Ctrl+WheelScrollUp".action   = { move-column-to-workspace-up   = {}; cooldown-ms = 150; };
-          "Mod+WheelScrollRight".action      = focus-column-right;
-          "Mod+WheelScrollLeft".action       = focus-column-left;
-          "Mod+Ctrl+WheelScrollRight".action = move-column-right;
-          "Mod+Ctrl+WheelScrollLeft".action  = move-column-left;
-
-          # Named workspace focus
-          "Mod+1".action = focus-workspace "I";
-          "Mod+2".action = focus-workspace "II";
-          "Mod+3".action = focus-workspace "III";
-          "Mod+4".action = focus-workspace "IV";
-          "Mod+5".action = focus-workspace "V";
-          "Mod+Shift+1".action = move-column-to-workspace "I";
-          "Mod+Shift+2".action = move-column-to-workspace "II";
-          "Mod+Shift+3".action = move-column-to-workspace "III";
-          "Mod+Shift+4".action = move-column-to-workspace "IV";
-          "Mod+Shift+5".action = move-column-to-workspace "V";
-
-          # Column/window ops — your exact binds
-          "Mod+BracketLeft".action  = consume-or-expel-window-left;
-          "Mod+BracketRight".action = consume-or-expel-window-right;
-          "Mod+Period".action       = expel-window-from-column;
-
-          # Resize
-          "Mod+R".action       = switch-preset-column-width;
-          "Mod+Shift+R".action = switch-preset-window-height;
-          "Mod+Ctrl+R".action  = reset-window-height;
-          "Mod+F".action       = maximize-column;
-          "Mod+Shift+F".action = fullscreen-window;
-          "Mod+Ctrl+F".action  = expand-column-to-available-width;
-          "Mod+C".action       = center-column;
-          "Mod+Ctrl+C".action  = center-visible-columns;
-          "Mod+Minus".action   = set-column-width "-10%";
-          "Mod+Equal".action   = set-column-width "+10%";
-          "Mod+Shift+Minus".action = set-window-height "-10%";
-          "Mod+Shift+Equal".action = set-window-height "+10%";
-
-          # Floating + tabbed
-          "Mod+V".action       = toggle-window-floating;
-          "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
-          "Mod+W".action       = toggle-column-tabbed-display;
-
-          # Volume — your exact binds
-          "XF86AudioRaiseVolume" = { action = spawn sh "-c" "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; allow-when-locked = true; };
-          "XF86AudioLowerVolume" = { action = spawn sh "-c" "${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; allow-when-locked = true; };
-          "XF86AudioMute"        = { action = spawn sh "-c" "${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"; allow-when-locked = true; };
-          "XF86AudioMicMute"     = { action = spawn sh "-c" "${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; allow-when-locked = true; };
-
-          # Media keys
-          "XF86AudioPlay" = { action = spawn sh "-c" "${playerctl} play-pause"; allow-when-locked = true; };
-          "XF86AudioStop" = { action = spawn sh "-c" "${playerctl} stop";       allow-when-locked = true; };
-          "XF86AudioPrev" = { action = spawn sh "-c" "${playerctl} previous";   allow-when-locked = true; };
-          "XF86AudioNext" = { action = spawn sh "-c" "${playerctl} next";       allow-when-locked = true; };
-
-          # Brightness
-          "XF86MonBrightnessUp"   = { action = spawn brightnessctl "--class=backlight" "set" "+5%"; allow-when-locked = true; };
-          "XF86MonBrightnessDown" = { action = spawn brightnessctl "--class=backlight" "set" "5%-"; allow-when-locked = true; };
-        };
-
-        # XWayland support
-        xwayland.enable = true;
-      };
-    };
+    programs.niri.enable = true;
+    hjem.users.${user}.files.".config/niri/config.kdl".source = niriConfig;
   };
 }
