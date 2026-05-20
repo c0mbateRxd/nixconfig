@@ -1,0 +1,110 @@
+/* Ashen Keep — Rofi launcher theme
+ * Cinzel font for the prompt, JetBrainsMono for entries.
+ * Bonfire Gold on selection. Floating centered window.
+ */
+
+* {
+    /* Palette */
+    bg:          #0a0b0e;
+    surface:     #12141a;
+    elevated:    #1c1f28;
+    border-col:  #2c3040;
+    dim:         #6a7088;
+    text-col:    #b0b8c8;
+    bright:      #c8d0e0;
+    bonfire:     #c49a30;
+    ember:       #a83a3a;
+    frost:       #4a7e96;
+
+    /* Reset */
+    background-color:   transparent;
+    text-color:         @text-col;
+    border:             0;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+}
+
+window {
+    background-color: @surface;
+    border:           1px solid @border-col;
+    border-radius:    10px;
+    width:            480px;
+    padding:          10px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          6px;
+}
+
+/* ── Input row ────────────────────────────────────────────── */
+inputbar {
+    background-color: @elevated;
+    border-radius:    7px;
+    padding:          8px 12px;
+    spacing:          8px;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @bonfire;
+    font:             "Cinzel 12";
+    vertical-align:   0.5;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @bright;
+    font:             "JetBrainsMono Nerd Font 12";
+    placeholder:      "search...";
+    placeholder-color: @dim;
+    vertical-align:   0.5;
+}
+
+/* ── Results list ─────────────────────────────────────────── */
+listview {
+    background-color: transparent;
+    spacing:          3px;
+    lines:            8;
+    columns:          1;
+}
+
+element {
+    background-color: transparent;
+    border-radius:    5px;
+    padding:          6px 10px;
+    spacing:          8px;
+    children:         [ element-icon, element-text ];
+}
+
+element selected {
+    background-color: @elevated;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             18px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       @text-col;
+    font:             "JetBrainsMono Nerd Font 12";
+    vertical-align:   0.5;
+}
+
+element selected > element-text {
+    text-color: @bonfire;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+scrollbar {
+    background-color: @elevated;
+    handle-color:     @border-col;
+    handle-width:     4px;
+    border-radius:    2px;
+    width:            6px;
+}

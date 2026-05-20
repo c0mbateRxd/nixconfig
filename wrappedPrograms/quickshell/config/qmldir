@@ -1,0 +1,3 @@
+singleton Theme 1.0 Theme.qml
+singleton NiriService 1.0 NiriService.qml
+singleton HardwareService 1.0 HardwareService.qml
