@@ -23,6 +23,9 @@
       self.nixosModules.cybersec
       self.nixosModules.bash
       self.nixosModules.git
+      self.nixosModules.niri
+      self.nixosModules.kitty
+      self.nixosModules.quickshell
       self.nixosModules.rofi
       inputs.hjem.nixosModules.default
     ];
@@ -73,7 +76,6 @@
 
     programs.appimage.enable = true;
     programs.appimage.binfmt = true;
-    programs.niri.enable = true;
 
     time.timeZone = "Asia/Kolkata";
     i18n.defaultLocale = "en_IN.UTF-8";
