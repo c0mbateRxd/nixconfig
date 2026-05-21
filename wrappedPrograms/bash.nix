@@ -77,11 +77,10 @@
         b64e = "base64";
       };
     };
-    # Deploy starship.toml to a path starship can actually read
-    hjem.users.${user}.files.".config/starship.toml".source = starshipToml;
 
     environment.sessionVariables = {
       EDITOR = "nvim"; VISUAL = "nvim";
+      STARSHIP_CONFIG = "${starshipToml}";
     };
     environment.systemPackages = with pkgs; [
       starship zoxide fzf bat eza ripgrep fd btop dust tldr
