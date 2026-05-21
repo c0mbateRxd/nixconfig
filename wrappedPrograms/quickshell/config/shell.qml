@@ -133,7 +133,6 @@ ShellRoot {
 
                     Audio      { anchors.verticalCenter: parent.verticalCenter }
                     Network    { anchors.verticalCenter: parent.verticalCenter }
-                    Bluetooth  { anchors.verticalCenter: parent.verticalCenter }
                     Brightness { anchors.verticalCenter: parent.verticalCenter }
                     Battery    { anchors.verticalCenter: parent.verticalCenter }
 
