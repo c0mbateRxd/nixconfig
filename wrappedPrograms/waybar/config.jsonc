@@ -1,0 +1,101 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 6,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "modules-left": ["custom/nixlogo", "niri/workspaces"],
+  "modules-center": ["mpris", "clock"],
+  "modules-right": ["cpu", "memory", "temperature", "wireplumber", "network", "backlight", "battery", "custom/power"],
+
+  "custom/nixlogo": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "I": "I",
+      "II": "II",
+      "III": "III",
+      "IV": "IV",
+      "V": "V"
+    }
+  },
+
+  "clock": {
+    "format": "{:%a %d %b  %I:%M %p}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+
+  "mpris": {
+    "format": "{player_icon} {title} — {artist}",
+    "format-paused": "{player_icon} {status_icon} {title}",
+    "player-icons": { "default": "󰐊" },
+    "status-icons": { "paused": "󰏤" },
+    "max-length": 35,
+    "tooltip": false
+  },
+
+  "cpu": {
+    "format": "CPU {usage}%",
+    "interval": 3,
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "RAM {percentage}%",
+    "interval": 3,
+    "tooltip": false
+  },
+
+  "temperature": {
+    "hwmon-path-abs": "/sys/class/hwmon",
+    "input-filename": "temp1_input",
+    "format": "{temperatureC}°C",
+    "interval": 3,
+    "tooltip": false
+  },
+
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟",
+    "format-icons": ["󰕿", "󰖀", "󰕾"],
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-",
+    "tooltip": false
+  },
+
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-disconnected": "󰤭",
+    "tooltip-format": "{ipaddr}/{cidr}",
+    "on-click": "kitty --title nmtui -e nmtui"
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set +5%",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": false
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁾", "󰂀", "󰂂", "󰁹"],
+    "states": { "warning": 25, "critical": 10 },
+    "tooltip-format": "{timeTo}"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "wlogout -b 2",
+    "tooltip": false
+  }
+}

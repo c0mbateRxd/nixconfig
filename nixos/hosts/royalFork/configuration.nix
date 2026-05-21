@@ -25,7 +25,7 @@
       self.nixosModules.git
       self.nixosModules.niri
       self.nixosModules.kitty
-      self.nixosModules.quickshell
+      self.nixosModules.waybar
       self.nixosModules.rofi
       inputs.hjem.nixosModules.default
     ];

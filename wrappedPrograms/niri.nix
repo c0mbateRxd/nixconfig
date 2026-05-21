@@ -20,8 +20,6 @@
     grim      = lib.getExe pkgs.grim;
     slurp     = lib.getExe pkgs.slurp;
     wlcopy    = "${pkgs.wl-clipboard}/bin/wl-copy";
-    # quickshell wrapper is installed as `quickshell` in systemPackages
-    quickshell = "/run/current-system/sw/bin/quickshell";
 
     niriConfig = pkgs.writeText "config.kdl" ''
       prefer-no-csd
@@ -60,7 +58,7 @@
       }
 
       spawn-at-startup "${swaybg}" "-i" "${wallpaper}" "-m" "fill"
-      spawn-at-startup "${quickshell}"
+      spawn-at-startup "/run/current-system/sw/bin/waybar"
       spawn-at-startup "${xwlsat}"
       spawn-at-startup "${dunst}"
 
