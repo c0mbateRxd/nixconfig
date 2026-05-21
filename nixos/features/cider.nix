@@ -1,7 +1,9 @@
+# Cider — Apple Music client. Marked broken in nixpkgs; we override
+# just this package rather than allowBroken globally (faster eval).
 {
   flake.nixosModules.cider = {pkgs, ...}: {
-    # Cider is marked broken in nixpkgs unstable — allow it
-    nixpkgs.config.allowBroken = true;
-    environment.systemPackages = [pkgs.cider];
+    environment.systemPackages = [
+      (pkgs.cider.overrideAttrs (_: { meta.broken = false; }))
+    ];
   };
 }

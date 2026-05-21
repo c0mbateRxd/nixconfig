@@ -1,10 +1,12 @@
+# Quickshell panel — wraps quickshell binary with our QML config dir.
 {inputs, ...}: {
   flake.nixosModules.quickshell = {pkgs, ...}: let
-    qs = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    qsPkg = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    configDir = ./config;
     wrapped = pkgs.writeShellScriptBin "quickshell" ''
-      exec ${qs}/bin/quickshell -c ${./config} "$@"
+      exec ${qsPkg}/bin/quickshell -p ${configDir}/shell.qml "$@"
     '';
   in {
-    environment.systemPackages = [wrapped];
+    environment.systemPackages = [wrapped qsPkg];
   };
 }

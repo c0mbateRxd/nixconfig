@@ -1,3 +1,10 @@
+configuration {
+    modi:                "drun,run";
+    show-icons:          true;
+    drun-display-format: "{name}";
+    display-drun:        "";
+}
+
 /* Ashen Keep — Rofi launcher theme
  * Cinzel font for the prompt, JetBrainsMono for entries.
  * Bonfire Gold on selection. Floating centered window.

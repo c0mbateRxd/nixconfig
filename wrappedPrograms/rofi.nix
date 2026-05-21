@@ -1,19 +1,9 @@
-# Rofi launcher — installs rofi-wayland and deploys Ashen Keep theme.
-# Theme file lands at ~/.config/rofi/config.rasi via hjem.
-# Keybind Super+D → rofi is in wrappedPrograms/niri.nix.
+# Rofi launcher — rofi + Ashen Keep theme deployed via hjem.
 {
-  flake.nixosModules.rofi = {
-    pkgs,
-    config,
-    ...
-  }: let
-    user = config.preferences.user.name; # "nyght"
+  flake.nixosModules.rofi = {pkgs, config, ...}: let
+    user = config.preferences.user.name;
   in {
     environment.systemPackages = [pkgs.rofi];
-
-    # Deploy the themed rasi file via hjem (our dotfile manager)
-    hjem.users.${user}.files = {
-      ".config/rofi/config.rasi".source = ./rofi/config.rasi;
-    };
+    hjem.users.${user}.files.".config/rofi/config.rasi".source = ./rofi/config.rasi;
   };
 }

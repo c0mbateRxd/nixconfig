@@ -1,30 +1,34 @@
-# SDDM with qylock "Sword" theme — Dark Souls aesthetic
-# The theme is packaged from raw GitHub source (not a flake).
-{inputs, ...}: {
-  flake.nixosModules.sddm = {pkgs, lib, ...}: let
-    # Package the Sword SDDM theme from qylock source
-    swordTheme = pkgs.stdenvNoCC.mkDerivation {
-      pname = "sddm-theme-sword";
-      version = "unstable";
-      src = inputs.qylock;
-      installPhase = ''
-        mkdir -p $out/share/sddm/themes/Sword
-	cp -aR themes/sword/. $out/share/sddm/themes/Sword/
-      '';
-    };
-  in {
+# SDDM — lightweight themed login. Cursor + power buttons work.
+# qylock "sword" theme is a lockscreen theme (43MB video, no SDDM
+# power controls, broken cursor) — replaced with a proper SDDM theme.
+{pkgs, ...}: {
+  flake.nixosModules.sddm = {pkgs, ...}: {
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "Sword";
       package = pkgs.kdePackages.sddm;
-      extraPackages = with pkgs; [
-        swordTheme
-        kdePackages.qtsvg
-        kdePackages.qtmultimedia
-        kdePackages.qt5compat
+      theme = "where_is_my_sddm_theme";
+      extraPackages = [
+        (pkgs.where-is-my-sddm-theme.override {
+          themeConfig.General = {
+            background = "#0a0b0e";
+            backgroundFill = "#0a0b0e";
+            passwordCharacter = "*";
+            passwordFontSize = 32;
+            cursorBlinkAnimation = true;
+            haveFormBackground = true;
+            partialBlur = false;
+          };
+        })
       ];
+      settings = {
+        Theme.CursorTheme = "Adwaita";
+        General.GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=1,QT_FONT_DPI=96";
+      };
     };
-    environment.systemPackages = [swordTheme];
+    # Cursor theme must be available system-wide for SDDM to find it
+    environment.systemPackages = with pkgs; [
+      adwaita-icon-theme
+    ];
   };
 }

@@ -20,11 +20,6 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # qylock SDDM themes (Sword theme)
-    qylock = {
-      url = "github:Darkkal44/qylock";
-      flake = false;  # raw source, not a flake
-    };
   };
 
   outputs = inputs: let

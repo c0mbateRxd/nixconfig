@@ -50,7 +50,7 @@
     boot.loader.grub = { enable = true; efiSupport = true; device = "nodev"; useOSProber = true; };
     boot.loader.efi.canTouchEfiVariables = true;
 
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages;
     boot.kernelParams = [
       "quiet" "splash"
       "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1"
@@ -60,6 +60,11 @@
     boot.plymouth.enable = true;
     boot.supportedFilesystems = ["ntfs"];
     boot.tmp.cleanOnBoot = true;
+
+    # Boot speed
+    boot.loader.timeout = 3;
+    systemd.services.NetworkManager-wait-online.enable = false;
+    boot.initrd.systemd.enable = true;
 
     # Nvidia — RTX 3050 drives display, no PRIME
     hardware.nvidia = {
