@@ -5,23 +5,22 @@ configuration {
     display-drun:        "";
 }
 
-/* Ashen Keep — Rofi launcher theme
- * Cinzel font for the prompt, JetBrainsMono for entries.
- * Bonfire Gold on selection. Floating centered window.
+/* Eldritch Ash — Rofi launcher theme
+ * Blends Evangelion icy tones with Steampunk Brass.
  */
 
 * {
     /* Palette */
-    bg:          #0a0b0e;
-    surface:     #12141a;
-    elevated:    #1c1f28;
-    border-col:  #2c3040;
-    dim:         #6a7088;
-    text-col:    #b0b8c8;
-    bright:      #c8d0e0;
-    bonfire:     #c49a30;
-    ember:       #a83a3a;
-    frost:       #4a7e96;
+    bg:          #08090d;
+    surface:     #10131a;
+    elevated:    #1b202c;
+    border-col:  #2a3245;
+    dim:         #566580;
+    text-col:    #a1acc2;
+    bright:      #ccd4e6;
+    brass:       #c97b28;
+    crimson:     #b83333;
+    icy-cyan:    #5299ad;
 
     /* Reset */
     background-color:   transparent;
@@ -56,7 +55,7 @@ inputbar {
 
 prompt {
     background-color: transparent;
-    text-color:       @bonfire;
+    text-color:       @icy-cyan;
     font:             "Cinzel 12";
     vertical-align:   0.5;
 }
@@ -88,6 +87,7 @@ element {
 
 element selected {
     background-color: @elevated;
+    border: 1px solid @border-col;
 }
 
 element-icon {
@@ -104,13 +104,13 @@ element-text {
 }
 
 element selected > element-text {
-    text-color: @bonfire;
+    text-color: @brass;
 }
 
 /* ── Scrollbar ────────────────────────────────────────────── */
 scrollbar {
     background-color: @elevated;
-    handle-color:     @border-col;
+    handle-color:     @icy-cyan;
     handle-width:     4px;
     border-radius:    2px;
     width:            6px;
