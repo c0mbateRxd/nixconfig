@@ -1,24 +1,23 @@
-# Ashen Keep — Dark Souls / gothic steampunk base16 palette
-# Cool blue-black base, desaturated fog tones, amber bonfire highlights.
-# Pulled from: ruined castles, fog-covered peaks, divine light through storm clouds.
+# Eldritch Ash — Dark Souls x Lord of Mysteries x Evangelion (Rei)
+# Cool abyssal blues, frosty London fog, brass clockwork, and crimson accents.
 let
   theme = {
-    base00 = "#0a0b0e"; # Abyss          — deepest terminal/panel bg
-    base01 = "#12141a"; # Cinder          — darker ui surfaces
-    base02 = "#1c1f28"; # Dark Ash        — selection background
-    base03 = "#2c3040"; # Grave Iron      — comments, inactive text
-    base04 = "#6a7088"; # Faded Rune      — dim ui text
-    base05 = "#b0b8c8"; # Pale Ash        — default text
-    base06 = "#c8d0e0"; # Moonstone       — bright text
-    base07 = "#e0e6f0"; # Phantom White   — lightest (titles, headers)
-    base08 = "#a83a3a"; # Blood Ember     — red / errors
-    base09 = "#c49a30"; # Bonfire Gold    — orange / HERO accent
-    base0A = "#d4b44e"; # Soul Ember      — yellow / warnings
-    base0B = "#5a8a58"; # Moss on Ruins   — green / success
-    base0C = "#4a7e96"; # Frigid Steel    — cyan / info
-    base0D = "#6070a8"; # Lothric Blue    — blue / links
-    base0E = "#7a5090"; # Phantom Violet  — magenta / special
-    base0F = "#705838"; # Rusted Bronze   — brown / deprecated
+    base00 = "#08090d"; # Deepest Void   — deepest terminal/panel bg
+    base01 = "#10131a"; # Cold Cinder    — darker ui surfaces
+    base02 = "#1b202c"; # Steampunk Iron — selection background
+    base03 = "#2a3245"; # Rusted Gear    — comments, inactive text
+    base04 = "#566580"; # Foggy Slate    — dim ui text
+    base05 = "#a1acc2"; # Rei's Ash      — default text
+    base06 = "#ccd4e6"; # Moonlit Fog    — bright text
+    base07 = "#eef1f8"; # Stark White    — lightest (titles, headers)
+    base08 = "#b83333"; # Crimson Moon   — red / errors (Eva Red)
+    base09 = "#c97b28"; # Brass Gold     — orange / HERO accent
+    base0A = "#d6a848"; # Fading Bonfire — yellow / warnings
+    base0B = "#4b855a"; # Overgrown Moss — green / success
+    base0C = "#5299ad"; # Icy Ayanami    — cyan / info
+    base0D = "#5c70b0"; # Abyssal Sea    — blue / links
+    base0E = "#7e5296"; # Eldritch Void  — magenta / special
+    base0F = "#7a593c"; # Leather & Ash  — brown / deprecated
   };
 
   stripHash = str:
