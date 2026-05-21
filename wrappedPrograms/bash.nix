@@ -3,32 +3,32 @@
     user = config.preferences.user.name;
     starshipToml = pkgs.writeText "starship.toml" ''
       add_newline = false
-      palette = "ashen"
+      palette = "eldritch"
 
-      [palettes.ashen]
-      gold   = "#c49a30"
-      moss   = "#5a8a58"
-      ember  = "#a83a3a"
-      frost  = "#4a7e96"
-      ink    = "#6a7088"
-      ash    = "#b0b8c8"
-      violet = "#6070a8"
+      [palettes.eldritch]
+      brass   = "#c97b28"
+      moss    = "#4b855a"
+      crimson = "#b83333"
+      cyan    = "#5299ad"
+      slate   = "#566580"
+      ash     = "#a1acc2"
+      abyss   = "#5c70b0"
 
       [character]
-      success_symbol = "[❯](bold gold)"
-      error_symbol   = "[❯](bold ember)"
+      success_symbol = "[❯](bold cyan)"
+      error_symbol   = "[❯](bold crimson)"
 
       [directory]
-      style             = "bold frost"
+      style             = "bold brass"
       truncation_length = 3
       truncate_to_repo  = true
 
       [git_branch]
-      style  = "bold violet"
+      style  = "bold abyss"
       symbol = " "
 
       [git_status]
-      style = "bold gold"
+      style = "bold crimson"
 
       [cmd_duration]
       style    = "bold moss"
@@ -36,7 +36,7 @@
       format   = "took [$duration]($style) "
 
       [username]
-      style_user  = "bold ember"
+      style_user  = "bold crimson"
       show_always = false
     '';
   in {
@@ -77,7 +77,6 @@
         b64e = "base64";
       };
     };
-
     environment.sessionVariables = {
       EDITOR = "nvim"; VISUAL = "nvim";
       STARSHIP_CONFIG = "${starshipToml}";
