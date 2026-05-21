@@ -4,7 +4,6 @@
       nmap netcat-gnu tcpdump inetutils curl wget
       binwalk rizin file unixtools.xxd
       hashcat openssl
-      steghide stegseek
       python3 python3Packages.requests python3Packages.pycryptodome
       exiftool foremost binutils
     ];
