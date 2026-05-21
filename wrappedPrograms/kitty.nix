@@ -1,4 +1,4 @@
-# Kitty terminal — Ashen Keep palette, deployed via hjem
+# Kitty terminal — Eldritch Ash palette, deployed via hjem
 {...}: {
   flake.nixosModules.kitty = {pkgs, config, ...}: let
     user = config.preferences.user.name;
@@ -17,35 +17,35 @@
       cursor_stop_blinking_after   15.0
       cursor_beam_thickness        2.0
 
-      # Ashen Keep palette
-      background           #0a0b0e
-      foreground           #b0b8c8
-      cursor               #c49a30
-      cursor_text_color    #0a0b0e
-      selection_background #1c1f28
-      selection_foreground #c8d0e0
+      # Eldritch Ash palette
+      background           #08090d
+      foreground           #a1acc2
+      cursor               #5299ad
+      cursor_text_color    #08090d
+      selection_background #1b202c
+      selection_foreground #ccd4e6
 
-      active_tab_foreground   #c49a30
-      active_tab_background   #1c1f28
-      inactive_tab_foreground #6a7088
-      inactive_tab_background #12141a
+      active_tab_foreground   #5299ad
+      active_tab_background   #1b202c
+      inactive_tab_foreground #566580
+      inactive_tab_background #10131a
 
-      color0  #0a0b0e
-      color1  #a83a3a
-      color2  #5a8a58
-      color3  #d4b44e
-      color4  #6070a8
-      color5  #7a5090
-      color6  #4a7e96
-      color7  #c8d0e0
-      color8  #2c3040
-      color9  #a83a3a
-      color10 #5a8a58
-      color11 #d4b44e
-      color12 #6070a8
-      color13 #7a5090
-      color14 #4a7e96
-      color15 #e0e6f0
+      color0  #08090d
+      color1  #b83333
+      color2  #4b855a
+      color3  #c97b28
+      color4  #5c70b0
+      color5  #7e5296
+      color6  #5299ad
+      color7  #ccd4e6
+      color8  #2a3245
+      color9  #b83333
+      color10 #4b855a
+      color11 #d6a848
+      color12 #5c70b0
+      color13 #7e5296
+      color14 #5299ad
+      color15 #eef1f8
 
       # Window
       window_padding_width    8
