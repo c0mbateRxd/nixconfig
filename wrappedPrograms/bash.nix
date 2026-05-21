@@ -86,7 +86,7 @@
     environment.systemPackages = with pkgs; [
       starship zoxide fzf bat eza ripgrep fd btop dust tldr
       lazygit fastfetch yt-dlp ffmpeg imagemagick
-      tree file wget killall tmux git
+      tree file wget killall tmux
     ];
   };
 }

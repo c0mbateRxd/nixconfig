@@ -3,6 +3,6 @@
     networking.networkmanager.enable = true;
     networking.firewall.enable = true;
     hardware.wirelessRegulatoryDatabase = true;
-    environment.systemPackages = with pkgs; [networkmanagerapplet blueman];
+    environment.systemPackages = with pkgs; [networkmanagerapplet];
   };
 }

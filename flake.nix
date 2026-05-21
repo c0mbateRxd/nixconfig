@@ -2,9 +2,8 @@
   description = "royalFork — Ashen Keep NixOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    wrappers.url = "github:Lassulus/wrappers";
+    nixpkgs.url         = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url     = "github:hercules-ci/flake-parts";
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     hjem = {
       url = "github:feel-co/hjem";
@@ -18,8 +17,10 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
