@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.power = {pkgs, lib, ...}: {
+  flake.nixosModules.power = {pkgs, ...}: {
     services.auto-cpufreq = {
       enable = true;
       settings = {

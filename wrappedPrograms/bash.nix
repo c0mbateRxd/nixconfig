@@ -85,8 +85,8 @@
     };
     environment.systemPackages = with pkgs; [
       starship zoxide fzf bat eza ripgrep fd btop dust tldr
-      lazygit fastfetch yt-dlp ffmpeg-full imagemagick
-      tree file unzip zip p7zip wget killall tmux git
+      lazygit fastfetch yt-dlp ffmpeg imagemagick
+      tree file wget killall tmux git
     ];
   };
 }

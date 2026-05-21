@@ -5,7 +5,7 @@
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       inter google-fonts
-      noto-fonts-color-emoji
+      noto-fonts noto-fonts-color-emoji
     ];
     fonts.fontconfig.defaultFonts = {
       serif = ["Cinzel"]; sansSerif = ["Inter"];
@@ -13,7 +13,7 @@
     };
 
     xdg.portal.enable = true;
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
     xdg.portal.config.common.default = "*";
 
     security.polkit.enable = true;

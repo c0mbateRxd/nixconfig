@@ -57,7 +57,6 @@
               active-color "#c49a30ff"
               inactive-color "#2c3040aa"
           }
-          border { off; }
       }
 
       spawn-at-startup "${swaybg}" "-i" "${wallpaper}" "-m" "fill"

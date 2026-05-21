@@ -1,5 +1,5 @@
 import QtQuick
-import Quickshell.Bluetooth
+import Quickshell.Services.Bluetooth
 
 // Bluetooth — native Quickshell.Bluetooth service.
 // Connected: Lothric Blue + device count.
