@@ -2,7 +2,6 @@
   flake.nixosConfigurations.royalFork = inputs.nixpkgs.lib.nixosSystem {
     modules = [self.nixosModules.royalForkHost];
   };
-
   flake.nixosModules.royalForkHost = {pkgs, config, lib, ...}: {
     imports = [
       self.nixosModules.royalForkHardware
@@ -56,7 +55,9 @@
       "nvidia-drm.modeset=1" "nvidia-drm.fbdev=1"
       "NVreg_DynamicPowerManagement=0x02"
       "amd_pstate=guided"
+      "usbcore.autosuspend=-1"
     ];
+
     boot.plymouth.enable = true;
     boot.supportedFilesystems = ["ntfs"];
     boot.tmp.cleanOnBoot = true;
@@ -85,15 +86,15 @@
     time.timeZone = "Asia/Kolkata";
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
-   	 LC_ADDRESS = "en_IN";
-   	 LC_IDENTIFICATION = "en_IN";
-   	 LC_MEASUREMENT = "en_IN";
-   	 LC_MONETARY = "en_IN";
-   	 LC_NAME = "en_IN";
-   	 LC_NUMERIC = "en_IN";
-   	 LC_PAPER = "en_IN";
-   	 LC_TELEPHONE = "en_IN";
-   	 LC_TIME = "en_IN";
+   	 LC_ADDRESS = "en_US.UTF-8";
+   	 LC_IDENTIFICATION = "en_US.UTF-8";
+   	 LC_MEASUREMENT = "en_US.UTF-8";
+   	 LC_MONETARY = "en_US.UTF-8";
+   	 LC_NAME = "en_US.UTF-8";
+   	 LC_NUMERIC = "en_US.UTF-8";
+   	 LC_PAPER = "en_US.UTF-8";
+   	 LC_TELEPHONE = "en_US.UTF-8";
+   	 LC_TIME = "en_US.UTF-8";
     };
     system.stateVersion = "25.11";
   };
