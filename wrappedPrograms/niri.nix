@@ -58,7 +58,7 @@
       }
 
       spawn-at-startup "${swaybg}" "-i" "${wallpaper}" "-m" "fill"
-      spawn-at-startup "/run/current-system/sw/bin/waybar"
+      spawn-at-startup "/run/current-system/sw/bin/noctalia-shell"
       spawn-at-startup "${xwlsat}"
       spawn-at-startup "${dunst}"
 
