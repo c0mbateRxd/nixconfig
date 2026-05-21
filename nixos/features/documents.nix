@@ -8,7 +8,7 @@
       ];
     };
     environment.systemPackages = with pkgs; [
-      zathura yazi unar poppler_utils ffmpegthumbnailer
+      zathura yazi unar poppler-utils ffmpegthumbnailer
       imv mpv
       libreoffice-fresh
       unzip zip p7zip unrar
