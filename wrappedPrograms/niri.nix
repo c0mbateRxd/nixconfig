@@ -24,6 +24,17 @@
     niriConfig = pkgs.writeText "config.kdl" ''
       prefer-no-csd
 
+      animations {
+          window-open {
+              duration-ms 150
+              curve "ease-out-expo"
+          }
+          window-close {
+              duration-ms 150
+              curve "ease-out-expo"
+          }
+      }
+
       input {
           keyboard {
               xkb {
