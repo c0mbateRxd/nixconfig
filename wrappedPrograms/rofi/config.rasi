@@ -88,8 +88,9 @@ element {
 
 element selected {
     background-color: @elevated;
-    border: 1px;
-    border-color: @border-col;
+    border:           1px;
+    border-color:     @border-col;
+    text-color:       @brass;
 }
 
 element-icon {
@@ -100,13 +101,9 @@ element-icon {
 
 element-text {
     background-color: transparent;
-    text-color:       @text-col;
+    text-color:       inherit;
     font:             "JetBrainsMono Nerd Font 12";
     vertical-align:   0.5;
-}
-
-element selected > element-text {
-    text-color: @brass;
 }
 
 /* ── Scrollbar ────────────────────────────────────────────── */
