@@ -8,7 +8,8 @@
       };
     };
     services.asusd.enable = true;
-    powerManagement.powertop.enable = true;
+    # powertop kept for manual analysis only; auto-tune removed because
+    # it overrides usbcore.autosuspend=-1 and kills external mice.
     environment.systemPackages = with pkgs; [asusctl powertop];
   };
 }
