@@ -7,15 +7,13 @@
       font_family      JetBrainsMono Nerd Font
       font_size        13.0
 
-      # JELLY CURSOR TRAIL
+      # ELDRITCH ASH CURSOR SMEAR
+      cursor_shape                 block
       cursor_trail                 3
-      cursor_trail_decay           0.05 0.4
-      cursor_trail_start_threshold 2
-      shell_integration            no-cursor
-      cursor_shape                 beam
-      cursor_blink_interval        0.5
+      cursor_trail_decay           0.2 0.65
+      cursor_trail_start_threshold 1
+      cursor_blink_interval        0.6
       cursor_stop_blinking_after   15.0
-      cursor_beam_thickness        2.0
 
       # Eldritch Ash palette
       background           #08090d
