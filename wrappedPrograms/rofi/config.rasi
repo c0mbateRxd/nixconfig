@@ -88,7 +88,8 @@ element {
 
 element selected {
     background-color: @elevated;
-    border: 1px solid @border-col;
+    border: 1px;
+    border-color: @border-col;
 }
 
 element-icon {
