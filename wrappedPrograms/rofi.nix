@@ -5,7 +5,7 @@
     user       = config.preferences.user.name;
     configRasi = ./rofi/config.rasi;
   in {
-    environment.systemPackages = [pkgs.rofi-wayland];
+    environment.systemPackages = [pkgs.rofi];
     
     # Deploy config on every activation — bypasses hjem reliability issues
     system.userActivationScripts.rofiConfig = {
