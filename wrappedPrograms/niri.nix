@@ -9,7 +9,7 @@
     # Absolute paths — niri spawn needs these, not bare names
     sh        = lib.getExe pkgs.bash;
     kitty     = lib.getExe pkgs.kitty;
-    rofi      = lib.getExe pkgs.rofi-wayland;
+    rofi      = lib.getExe pkgs.rofi;
     swaybg    = lib.getExe pkgs.swaybg;
     dunst     = lib.getExe pkgs.dunst;
     wlogout   = lib.getExe pkgs.wlogout;
