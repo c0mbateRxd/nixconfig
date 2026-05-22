@@ -1,5 +1,7 @@
 {inputs, ...}: {
-  flake.nixosModules.general = {pkgs, ...}: {
+  flake.nixosModules.general = {pkgs, config, ...}: let
+    user = config.preferences.user.name;
+  in {
     imports = [inputs.nix-index-database.nixosModules.nix-index];
     programs.nix-index-database.comma.enable = true;
     nix.settings = {
@@ -12,7 +14,7 @@
       glibc zlib openssl ncurses libgcc glib expat bzip2 xz fuse systemd stdenv.cc.cc.lib
     ];
     programs.direnv = { enable = true; silent = true; nix-direnv.enable = true; };
-    programs.nh = { enable = true; flake = "/home/nyght/nixconfig"; };
+    programs.nh = { enable = true; flake = "/home/${user}/nixconfig"; };
     environment.systemPackages = with pkgs; [nil nixd statix alejandra manix nix-inspect nvd];
   };
 }
