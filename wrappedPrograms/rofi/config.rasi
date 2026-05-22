@@ -33,7 +33,8 @@ configuration {
 
 window {
     background-color: @surface;
-    border:           1px solid @border-col;
+    border:           1px;
+    border-color:     @border-col;
     border-radius:    10px;
     width:            480px;
     padding:          10px;
